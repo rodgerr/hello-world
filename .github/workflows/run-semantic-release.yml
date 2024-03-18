@@ -3,16 +3,20 @@ name: Semantic Release
 on:
   workflow_dispatch
 
+permissions: write-all
+
 jobs:
   semantic-release:
     runs-on: ubuntu-latest
     timeout-minutes: 60
     steps:
       - uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
       - name: Setup Node.js
         uses: actions/setup-node@v3
         with:
-          node-version: 18
+          node-version: "lts/*"
       - name: Install Semantic release
         run: |
           sudo npm install -g \
@@ -20,5 +24,8 @@ jobs:
             @semantic-release/git@10.0.1 \
             @semantic-release/release-notes-generator@10.0.3 \
             @semantic-release/github@8.0.7
-      - name: Release and Publish
-        run: semantic-release --dry-run --debug
+      - name: Release
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
+        run: npx semantic-release
