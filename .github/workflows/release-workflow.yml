@@ -7,7 +7,7 @@ on:
 
 
 env:
-  SEMANTIC_VERSION: ${{ github.event.release.tag_name }}
+  TAG_VERSION: ${{ github.event.release.tag_name }}
   REGISTRY: ghcr.io
   REPO_NAME: ${{ github.repository }}
   IMAGE_NAME: hello-world-image
@@ -30,7 +30,7 @@ jobs:
           cache: 'maven'
       - name: Debug output
         run: |
-          echo "Semantic Version: ${IMAGE_NAME}:${SEMANTIC_VERSION}"
+          echo "Semantic Version: ${IMAGE_NAME}:${TAG_VERSION}"
       - name: Maven build
         run: mvn install
       - name: Log in to the Container registry
@@ -45,5 +45,6 @@ jobs:
           context: .
           push: true
           tags: |
-            ${{ env.REGISTRY }}/${{ env.REPO_NAME }}/${{ env.IMAGE_NAME }}:${{ env.SEMANTIC_VERSION }}
+            ${{ env.REGISTRY }}/${{ env.REPO_NAME }}/${{ env.IMAGE_NAME }}:${{ env.TAG_VERSION }}
             ${{ env.REGISTRY }}/${{ env.REPO_NAME }}/${{ env.IMAGE_NAME }}:latest
+            ${{ env.REGISTRY }}/${{ env.REPO_NAME }}/${{ env.IMAGE_NAME }}:latest-release
