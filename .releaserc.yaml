@@ -2,9 +2,15 @@ tagFormat: v${version}
 plugins:
   - "@semantic-release/commit-analyzer"
   - "@semantic-release/release-notes-generator"
-  - "@semantic-release/git"
+  - - "@semantic-release/git"
+    - assets:
+        - path: README.md
+          label: Readme
+        - path: target/*.jar
+          label: JARs
   - - "@semantic-release/github"
     - draftRelease: true
+
 
 branches:
   - name: 'main'
