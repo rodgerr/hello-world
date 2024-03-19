@@ -1,8 +1,10 @@
 # This workflow builds, tests, and releases the modules.
 name: Publish Release to Github Packages
+
 on:
   release:
     types: [published, released]
+
 
 env:
   SEMANTIC_VERSION: ${{ github.event.release.tag_name }}
@@ -35,4 +37,6 @@ jobs:
         with:
           context: .
           push: true
-          tags: rodgerr/${IMAGE_NAME}:${SEMANTIC_VERSION}
+          tags: |
+            ${{ env.REGISTRY }}/${{ env.REPO_NAME }}/${IMAGE_NAME}:${SEMANTIC_VERSION}
+            ${{ env.REGISTRY }}/${{ env.REPO_NAME }}/${IMAGE_NAME}:latest
