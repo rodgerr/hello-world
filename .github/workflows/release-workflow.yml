@@ -33,6 +33,12 @@ jobs:
           echo "Semantic Version: ${IMAGE_NAME}:${SEMANTIC_VERSION}"
       - name: Maven build
         run: mvn install
+      - name: Log in to the Container registry
+        uses: docker/login-action@v2.2.0
+        with:
+          registry: ${{ env.REGISTRY }}
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
       - name: Build and push Docker image
         uses: docker/build-push-action@v4.1.1
         with:
