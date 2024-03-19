@@ -6,8 +6,6 @@ plugins:
     - assets:
         - path: README.md
           label: Readme
-        - path: target/*.jar
-          label: JARs
   - - "@semantic-release/github"
     - draftRelease: true
 
