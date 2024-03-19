@@ -5,7 +5,6 @@ plugins:
   - "@semantic-release/git"
   - - "@semantic-release/github"
     - draftRelease: true
-      assets: "target/*.jar"
 
 branches:
   - name: 'main'
