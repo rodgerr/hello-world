@@ -15,6 +15,5 @@ jobs:
       - run: ls -al
       - working-directory: .github/workflows
         run: ls -al
-      - uses: ./common.yml
       - name: Step 2 for Workflow 2
         run: echo "This is a specific step for Workflow 2."
