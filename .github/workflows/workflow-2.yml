@@ -1,12 +1,13 @@
 # Workflow file 2
 name: Workflow 2
+
 on:
   push:
     branches: ['feature/*']
 
 jobs:
   common-include-job:
-    uses: ./.github/workflows/common.yml
+    uses: ./.github/workflows/common/common.yml
   workflow-2-job:
     runs-on: ubuntu-latest
     steps:
