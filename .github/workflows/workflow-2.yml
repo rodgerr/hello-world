@@ -1,0 +1,13 @@
+# Workflow file 2
+name: Workflow 2
+on:
+  push:
+    branches: ['feature/*']
+
+jobs:
+  workflow-2-job:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: ./common.yml
+      - name: Step 2 for Workflow 2
+        run: echo "This is a specific step for Workflow 2."

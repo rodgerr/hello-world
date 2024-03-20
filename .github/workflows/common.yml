@@ -1,0 +1,13 @@
+# Common workflow template (common.yml)
+name: Common Workflow
+
+jobs:
+  common-job:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Step 1
+        run: echo "This is a common step."
+
+
+
+
