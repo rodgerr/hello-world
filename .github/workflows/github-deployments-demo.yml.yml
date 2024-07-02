@@ -1,0 +1,13 @@
+name: GitHub Actions Demo
+run-name: ${{ github.actor }} is testing out GitHub Actions 🚀
+
+on: [push]
+
+jobs:
+  deploy-demo:
+    runs-on: ubuntu-latest
+    environment: FoobarEnvironment
+    steps:
+      - name: Deploy
+        run: echo "Deploying the application to the Foobar environment."
+
